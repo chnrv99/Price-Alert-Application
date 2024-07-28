@@ -2,18 +2,33 @@ from celery import shared_task
 from django.core.mail import send_mail
 from django.conf import settings
 from alerts.models import TargetPriceOfCoin, TriggeredAlerts, Views
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+def send_mail(subject, message, from_email, recipient_list):
+    message = Mail(
+        from_email=from_email,
+        to_emails=recipient_list,
+        subject=subject,
+        plain_text_content=message)
+    try:
+        sg = SendGridAPIClient("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")
+        response = sg.send(message)
+        print("Email sent to", recipient_list)
+    except Exception as e:
+        print(e)
+        
 
 @shared_task
 def trigger_alert(email, symbol, price, coin_id):
     # Send email or print to console
     subject = f"Price Alert: {symbol}"
     message = f"The price of {symbol} has fallen to {price}"
-    from_email = settings.DEFAULT_FROM_EMAIL
+    from_email = "nishanth.chennai44@gmail.com"
     recipient_list = [email]
     
-    # dont have time.. sorry :) i thought of using twillo API but i dont have time to implement it
-    
-    # send_mail(subject, message, from_email, recipient_list)
+   
+    send_mail(subject, message, from_email, recipient_list)
 
     # For now, just print to console
     print(f"Alert: {subject} - {message}")
