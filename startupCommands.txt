@@ -1,0 +1,2 @@
+celery -A project worker --loglevel=info
+python3 manage.py runserver

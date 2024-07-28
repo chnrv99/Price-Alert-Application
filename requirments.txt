@@ -6,3 +6,4 @@ djangorestframework
 websocket-client
 celery
 redis
+django-redis
