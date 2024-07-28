@@ -4,3 +4,5 @@ requests
 PyJWT
 djangorestframework
 websocket-client
+celery
+redis
