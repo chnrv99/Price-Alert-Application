@@ -16,14 +16,16 @@ class AlertsConfig(AppConfig):
             data = json.loads(message)
             symbol = data['s']
             price = float(data['c'])
-            print(f"Symbol: {symbol}, Price: {price}")
-
+            
+            # uncomment if u wanna debug
+            # print(f"Symbol: {symbol}, Price: {price}")
+            
             # Check against target prices
-            target_prices = TargetPriceOfCoin.objects.filter(coin=symbol)
+            target_prices = TargetPriceOfCoin.objects.filter(coin=symbol, flag_trigger=False)
             for target in target_prices:
                 if price <= target.target_price:
                     # Trigger alert
-                    trigger_alert.delay(target.user.email, symbol, price)
+                    trigger_alert.delay(target.user.email, symbol, price, target.coin_id)
 
         def on_error(ws, error):
             print(f"Error: {error}")

@@ -19,6 +19,7 @@ class DeleteAlertView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
 
 class FetchAlertsView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = TargetPriceOfCoin.objects.all()  # Default queryset
     serializer_class = TargetPriceOfCoinSerializer  # Default serializer
 
@@ -27,15 +28,13 @@ class FetchAlertsView(generics.ListAPIView):
         page = self.request.query_params.get('page', 1)
         start = (int(page) - 1) * 3
         end = int(page) * 3
-
+        user_id = self.request.user.id
         if alert_type == 'target_price':
-            queryset = TargetPriceOfCoin.objects.all()[start:end]
+            queryset = TargetPriceOfCoin.objects.filter(user_id=user_id)[start:end]
             self.serializer_class = TargetPriceOfCoinSerializer
         elif alert_type == 'triggered_alerts':
-            queryset = TriggeredAlerts.objects.all()[start:end]
-            self.serializer_class = TriggeredAlertsSerializer
-        elif alert_type == 'views':
-            queryset = Views.objects.all()[start:end]
+            queryset1 = Views.objects.filter(user_id=user_id)[start:end]
+            queryset = TriggeredAlerts.objects.filter(alert_id__in=queryset1.values_list('alert_id', flat=True))    
             self.serializer_class = ViewsSerializer
         else:
             queryset = []
