@@ -14,7 +14,7 @@ services:
     depends_on:
       - redis
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
 
   worker:
     build: .
@@ -24,6 +24,6 @@ services:
     depends_on:
       - redis
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
 
 # No need for a db service as we're using SQLite, which is a file-based database

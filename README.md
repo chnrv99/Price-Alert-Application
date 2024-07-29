@@ -20,6 +20,14 @@ Used ER to Relation mapping, and some tweaks to reduce the number of tables from
 Used redis to cache /alerts/fetch
 Used redis + celery as a queuing for email, using SMTP Gmail for mailing
 
-## Docker
+## Run the app using Docker
 Used docker to bundle and contanerise the app.
+'''
+docker-compose build
+docker-compose up
+'''
+Application will be accessible in port 8000 
+And also run redis server separately, docker desktop is the easier way to install it.
 
+## Demo Video
+https://drive.google.com/file/d/1b8rHByDGUpKsBF7ptZqQq0YzFHHYb7-5/view?usp=sharing
