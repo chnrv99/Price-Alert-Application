@@ -22,10 +22,10 @@ Used redis + celery as a queuing for email, using SMTP Gmail for mailing
 
 ## Run the app using Docker
 Used docker to bundle and contanerise the app.  
-'''
+```
 docker-compose build
 docker-compose up
-'''
+```
 Application will be accessible in port 8000   
 And also run redis server separately, docker desktop is the easier way to install it.  
 
