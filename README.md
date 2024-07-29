@@ -23,6 +23,7 @@ Used redis + celery as a queuing for email, using SMTP Gmail for mailing
 ## Run the app using Docker
 Used docker to bundle and contanerise the app.  
 ```
+git clone https://github.com/chnrv99/Price-Alert-Application.git .
 docker-compose build
 docker-compose up
 ```
