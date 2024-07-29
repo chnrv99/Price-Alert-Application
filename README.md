@@ -27,8 +27,7 @@ git clone https://github.com/chnrv99/Price-Alert-Application.git .
 docker-compose build
 docker-compose up
 ```
-Application will be accessible in port 8000   
-And also run redis server separately, docker desktop is the easier way to install it.  
+Application will be accessible in port 8000
 
 ## Demo Video
 https://drive.google.com/file/d/1b8rHByDGUpKsBF7ptZqQq0YzFHHYb7-5/view?usp=sharing  
