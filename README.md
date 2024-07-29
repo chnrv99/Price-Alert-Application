@@ -18,7 +18,8 @@ Used ER to Relation mapping, and some tweaks to reduce the number of tables from
 
 ## Caching and mailing
 Used redis to cache /alerts/fetch
-Used redis + celery as a queuing for email, tried sendgrid as email service but they banned me in less than 5 minutes. Code is implemented and it was working. So I am printing it on console.
+Used redis + celery as a queuing for email, using SMTP Gmail for mailing
+
 
 ## Docker
 Used docker to bundle and contanerise the app.
